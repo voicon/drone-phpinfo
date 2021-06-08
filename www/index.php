@@ -1,5 +1,5 @@
 <?php 
 
-echo "Vinh test <br />";
+echo "Vinh test <br /> today";
 
 phpinfo();
