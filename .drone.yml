@@ -1,78 +1,16 @@
 ---
 kind: pipeline
-name: publish
+type: exec
+name: default
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
-- name: publish-docker
-  image: plugins/docker
-  settings:
-    dockerfile: ./Dockerfile
-    context: ./
-    purge: true
-    repo: kelvintran/phpinfo
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    tags:
-    - latest
-    - ${DRONE_BRANCH}
-  when:
-    event:
-    - push
-
-trigger:
-  branch:
-  - master
-  event:
-  - push
-
-# ---
-# kind: pipeline
-# name: tests
-
-# steps:
-# - name: run-landing-tests
-#   image: node:10.16.0
-#   commands:
-#   - chmod +x ./bin/run-test.sh
-#   - cd ./landing
-#   - ../bin/run-test.sh
-#   - cd ../
-#   when:
-#     event:
-#     - pull_request
-
-# - name: run-web-tests
-#   image: node:10.16.0
-#   commands:
-#   - chmod +x ./bin/run-test.sh
-#   - cd ./web
-#   - ../bin/run-test.sh
-#   - cd ../
-#   when:
-#     event:
-#     - pull_request
-
-# - name: run-api-tests
-#   image: node:10.16.0
-#   commands:
-#   - chmod +x ./bin/run-test.sh
-#   - cd ./api
-#   - ../bin/run-test.sh
-#   - cd ../
-#   when:
-#     event:
-#     - pull_request
-
-# services:
-# - name: mongo
-#   image: mongo:4.0.10
-# - name: redis
-#   image: redis:5.0.5
-
-# trigger:
-#  branch:
-#  - master
-#  event:
-#  - pull_request
+- name: greeting
+  commands:
+  - echo hello world
+  - ifconfig 
+  - hostname -I
+  - pwd
