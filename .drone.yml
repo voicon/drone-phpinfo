@@ -14,3 +14,4 @@ steps:
   - ifconfig 
   - hostname -I
   - pwd
+  - ls -la
